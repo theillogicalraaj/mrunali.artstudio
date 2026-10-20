@@ -349,6 +349,10 @@ footer .btt:hover{border-color:#fff}
     <div class="logo">MW</div>
     <p>Mrunali's World is a personal gallery of hand-made art: paintings, pencil portraits, characters, still life studies, clay and carving. Every piece on this page was drawn, painted or carved by Mrunali.</p>
     <p>© 2026 Mrunali's World. All artworks are original work by the artist.</p>
+    <p>Email: theillogicalraj@gmail.com<br>
+      <a href="https://wa.me/919525859545" target="_blank" rel="noopener">WhatsApp</a>
+       <a href="https://instagram.com/0o0_bc" target="_blank" rel="noopener">Instagram</a>
+    </p>
     <button class="btt" type="button" id="btt">Back to top</button>
   </footer>
 </div>
@@ -580,7 +584,12 @@ function rowHtml(r){
 function rowsHtml(){
   var rows=ROWS.slice();
   if(S.list.length)rows.unshift({t:"My List",items:S.list.map(function(i){return BY[i]})});
-  return rows.map(rowHtml).join("");
+  return rows.map(rowHtml).join("");      // <- line 583: change this line
+}
+function rowsHtml(){
+  var rows=ROWS.slice();
+  if(S.list.length)rows.unshift({t:"My List",items:S.list.map(function(i){return BY[i]})});
+  return rows.map(rowHtml).join("")+contactRow();
 }
 function gridPage(title,sub,items){
   return '<div class="page"><h2>'+esc(title)+'</h2><p class="sub">'+esc(sub)+'</p>'+
