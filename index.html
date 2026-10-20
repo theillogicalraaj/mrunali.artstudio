@@ -304,6 +304,29 @@ footer .btt:hover{border-color:#fff}
   .mc:hover{transform:none}
   .row h3 small{display:none}
 }
+
+.ctiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:0 var(--pad)}
+.page .ctiles{padding:0}
+.ctile{position:relative;border-radius:8px;padding:22px;min-height:220px;display:flex;flex-direction:column;gap:6px;background:linear-gradient(135deg,var(--g1),var(--g2));color:#fff;overflow:hidden;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.ctile::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 25%,rgba(0,0,0,.5));pointer-events:none}
+.ctile>*{position:relative;z-index:1}
+.ctile:hover{transform:scale(1.04);box-shadow:0 18px 50px rgba(0,0,0,.6);z-index:2}
+.ci{font-size:2.8rem;margin-bottom:6px}
+.cl{font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;opacity:.92}
+.cv{font-family:var(--display);font-size:clamp(1.35rem,1.9vw,1.9rem);letter-spacing:.03em;line-height:1.1;overflow-wrap:anywhere}
+.ca{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap;padding-top:14px}
+.ca .btn{font-size:.85rem;padding:.55em 1.1em}
+a.btn{text-decoration:none}
+.flinks{display:flex;flex-wrap:wrap;gap:8px 24px}
+.flinks a{color:#ddd;text-decoration:none;overflow-wrap:anywhere}
+.flinks a:hover{text-decoration:underline}
+@media (max-width:860px){.ctiles{grid-template-columns:1fr}.ctile{min-height:0}.ctile:hover{transform:none}}
+@media (max-width:1250px){
+  .links{display:none;position:absolute;top:100%;left:var(--pad);flex-direction:column;align-items:flex-start;gap:0;background:rgba(10,10,12,.97);border:1px solid var(--line);padding:6px 0;min-width:200px}
+  .links.on{display:flex}
+  .links button{padding:10px 18px;width:100%;text-align:left;min-height:44px}
+  .browse{display:flex}
+}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
@@ -349,10 +372,7 @@ footer .btt:hover{border-color:#fff}
     <div class="logo">MW</div>
     <p>Mrunali's World is a personal gallery of hand-made art: paintings, pencil portraits, characters, still life studies, clay and carving. Every piece on this page was drawn, painted or carved by Mrunali.</p>
     <p>© 2026 Mrunali's World. All artworks are original work by the artist.</p>
-    <p>Email: theillogicalraj@gmail.com<br>
-      <a href="https://wa.me/919525859545" target="_blank" rel="noopener">WhatsApp</a>
-       <a href="https://instagram.com/0o0_bc" target="_blank" rel="noopener">Instagram</a>
-    </p>
+    <div class="flinks" id="flinks"></div>
     <button class="btt" type="button" id="btt">Back to top</button>
   </footer>
 </div>
@@ -372,11 +392,41 @@ var IC={
  close:"M19 6.4 17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12z",
  info:"M11 7h2v2h-2zm0 4h2v6h-2zm1-9a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16z",
  full:"M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z",
- next:"M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"
+ next:"M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z",
+ mail:"M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v.5l8 5 8-5V6H4zm16 3.3-8 5-8-5V18h16V9.3z",
+ wa:"M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4s-.6-1.4-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4.1c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z",
+ ig:"M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm5.5-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
 };
-function ic(n){return '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="'+IC[n]+'"/></svg>'}
+function ic(n){return '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="'+IC[n]+'"/></svg>'}
 function $(s,r){return (r||document).querySelector(s)}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+
+/* =====================================================================
+   EDIT YOUR CONTACT DETAILS HERE. This is the only place you need to change.
+   Leave a value as "" to hide that contact option.
+   ===================================================================== */
+var CONTACT={
+  email:"theillogicalraj@gmail.com",
+  whatsapp:"919525859545",   // country code + number, digits only (91 = India). No + or spaces.
+  whatsappMessage:"Hi Mrunali! I saw your art on Mrunali's World.",
+  instagram:"0o0_bc"  // your Instagram username, without the @
+};
+/* ===================================================================== */
+function contactItems(){
+  var C=CONTACT,out=[];
+  if(C.email)out.push({k:"Email",ic:"mail",v:C.email,href:"mailto:"+C.email,act:"Send email",g:"#7b3dff,#ff3d9a"});
+  if(C.whatsapp){var d=String(C.whatsapp).replace(/\D/g,"");out.push({k:"WhatsApp",ic:"wa",v:"+"+d,href:"https://wa.me/"+d+"?text="+encodeURIComponent(C.whatsappMessage||""),act:"Chat on WhatsApp",g:"#138a4a,#19a8b8"})}
+  if(C.instagram){var u=String(C.instagram).replace(/^@/,"");out.push({k:"Instagram",ic:"ig",v:"@"+u,href:"https://instagram.com/"+u,act:"Follow",g:"#ff3d9a,#ff7a2f"})}
+  return out;
+}
+function tilesHtml(){
+  var it=contactItems();
+  if(!it.length)return '<div class="empty">Contact details are coming soon.</div>';
+  return it.map(function(c){var g=c.g.split(",");
+    return '<div class="ctile" style="--g1:'+g[0]+';--g2:'+g[1]+'"><div class="ci">'+ic(c.ic)+'</div><div class="cl">'+c.k+'</div><div class="cv">'+esc(c.v)+'</div>'+
+    '<div class="ca"><a class="btn p" href="'+esc(c.href)+'" target="_blank" rel="noopener">'+c.act+'</a><button class="btn s" type="button" data-copy="'+esc(c.v)+'">Copy</button></div></div>'}).join("");
+}
+function contactRow(){return '<div class="row"><h3>Get in touch</h3><div class="ctiles">'+tilesHtml()+'</div></div>'}
 
 /* ---------- Data ---------- */
 var A=[
@@ -457,7 +507,7 @@ var ROWS=[
  {t:"Because you watched The Mirror",items:ids("lookback,whitegirl,thoughtful,snow,sunset")}
 ];
 var VIEWS=[
- ["home","Home"],["Portraits","Portraits"],["Characters","Characters"],["Still Life","Still Life"],["Folk Art","Folk Art"],["Sculpture","Sculpture"],["latest","New & Popular"],["list","My List"]
+ ["home","Home"],["Portraits","Portraits"],["Characters","Characters"],["Still Life","Still Life"],["Folk Art","Folk Art"],["Sculpture","Sculpture"],["latest","New & Popular"],["contact","Contact"],["list","My List"]
 ];
 var PROFILES=[
  {n:"Mrunali",i:"mirror",p:"50% 22%"},{n:"Guest",i:"lookback",p:"50% 38%"},
@@ -581,15 +631,6 @@ function rowHtml(r){
    '<div class="track">'+cards+'</div>'+
    '<button class="arrow r" type="button" aria-label="Scroll right">'+ic("right")+'</button></div>';
 }
-function contactRow(){
-  var C=[["Email","yourname@example.com","mailto:theillogicalraj@gmail.com","linear-gradient(135deg,#ff3d9a,#ff7a2f)"],
-         ["WhatsApp","+91 9525859545","https://wa.me/919525859545","linear-gradient(135deg,#46d37f,#19d3e6)"],
-         ["Instagram","@0o0_bc","https://instagram.com/0o0_bc","linear-gradient(135deg,#ff3d9a,#ffc933)"]];
-  return '<div class="row"><h3>Get in touch</h3><div class="track">'+C.map(function(c){
-    return '<a class="card" href="'+c[2]+'" target="_blank" rel="noopener" style="text-decoration:none;color:#fff"><div class="thumb" style="background:'+c[3]+';animation:none;display:grid;place-content:center;text-align:center;padding:12px"><b style="font-size:1.4rem">'+c[0]+'</b><span style="font-size:.85rem;overflow-wrap:anywhere">'+c[1]+'</span></div></a>';
-  }).join("")+'</div></div>';
-}
-}
 function rowsHtml(){
   var rows=ROWS.slice();
   if(S.list.length)rows.unshift({t:"My List",items:S.list.map(function(i){return BY[i]})});
@@ -611,6 +652,9 @@ function render(view,keep){
   }else if(view==="home"){
     m.innerHTML=heroHtml()+'<div class="rows" id="rows">'+rowsHtml()+'</div>';
     startHero();
+  }else if(view==="contact"){
+    clearInterval(heroTimer);
+    m.innerHTML='<div class="page"><h2>Contact</h2><p class="sub">Commissions, collaborations or just a hello. Pick how you would like to reach Mrunali.</p><div class="ctiles big">'+tilesHtml()+'</div></div>';
   }else{
     clearInterval(heroTimer);
     var items,t,s;
@@ -634,7 +678,7 @@ function refresh(){
 /* ---------- Rows binding ---------- */
 function bindRows(){
   document.querySelectorAll(".row").forEach(function(row){
-    var tr=$(".track",row),l=$(".arrow.l",row),r=$(".arrow.r",row);
+    var tr=$(".track",row),l=$(".arrow.l",row),r=$(".arrow.r",row);if(!tr)return;
     function upd(){l.hidden=tr.scrollLeft<8;r.hidden=tr.scrollLeft+tr.clientWidth>=tr.scrollWidth-8}
     l.onclick=function(){tr.scrollBy({left:-tr.clientWidth*.85})};
     r.onclick=function(){tr.scrollBy({left:tr.clientWidth*.85})};
@@ -747,6 +791,7 @@ document.addEventListener("click",function(e){
   var t=e.target;
   var b;
   if((b=t.closest("[data-play]"))){e.stopPropagation();hidePop(true);openViewer(b.dataset.play);return}
+  if((b=t.closest("[data-copy]"))){var cv=b.dataset.copy;var ok=function(){toast("Copied: "+cv)},no=function(){toast(cv)};try{navigator.clipboard.writeText(cv).then(ok,no)}catch(er){no()}return}
   if((b=t.closest("[data-add]"))){toggleList(b.dataset.add);return}
   if((b=t.closest("[data-like]"))){toggleLike(b.dataset.like);return}
   if((b=t.closest("[data-vclose]"))){closeViewer();return}
@@ -803,6 +848,7 @@ window.addEventListener("orientationchange",function(){hidePop(true)});
 })();
 
 /* ---------- Boot ---------- */
+(function(){var f=$("#flinks");if(f)f.innerHTML=contactItems().map(function(c){return '<a href="'+esc(c.href)+'" target="_blank" rel="noopener">'+c.k+': '+esc(c.v)+'</a>'}).join("")})();
 load();buildProfiles();buildNav();
 document.querySelectorAll("#home-logo").forEach(function(l){l.addEventListener("keydown",function(e){if(e.key==="Enter")l.click()})});
 })();
