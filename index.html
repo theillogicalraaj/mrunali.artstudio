@@ -581,10 +581,14 @@ function rowHtml(r){
    '<div class="track">'+cards+'</div>'+
    '<button class="arrow r" type="button" aria-label="Scroll right">'+ic("right")+'</button></div>';
 }
-function rowsHtml(){
-  var rows=ROWS.slice();
-  if(S.list.length)rows.unshift({t:"My List",items:S.list.map(function(i){return BY[i]})});
-  return rows.map(rowHtml).join("");      // <- line 583: change this line
+function contactRow(){
+  var C=[["Email","yourname@example.com","mailto:theillogicalraj@gmail.com","linear-gradient(135deg,#ff3d9a,#ff7a2f)"],
+         ["WhatsApp","+91 9525859545","https://wa.me/919525859545","linear-gradient(135deg,#46d37f,#19d3e6)"],
+         ["Instagram","@0o0_bc","https://instagram.com/0o0_bc","linear-gradient(135deg,#ff3d9a,#ffc933)"]];
+  return '<div class="row"><h3>Get in touch</h3><div class="track">'+C.map(function(c){
+    return '<a class="card" href="'+c[2]+'" target="_blank" rel="noopener" style="text-decoration:none;color:#fff"><div class="thumb" style="background:'+c[3]+';animation:none;display:grid;place-content:center;text-align:center;padding:12px"><b style="font-size:1.4rem">'+c[0]+'</b><span style="font-size:.85rem;overflow-wrap:anywhere">'+c[1]+'</span></div></a>';
+  }).join("")+'</div></div>';
+}
 }
 function rowsHtml(){
   var rows=ROWS.slice();
